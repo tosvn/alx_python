@@ -1,5 +1,5 @@
 def fibonacci_sequence(n):
-     if n <= 0:
+    if n <= 0:
         return []
     elif n == 1:
         return [0]
@@ -16,6 +16,7 @@ def fibonacci_sequence(n):
 
 
 if __name__ == "__main__":
+
     print(fibonacci_sequence(6))
     print(fibonacci_sequence(1))
     print(fibonacci_sequence(0))
