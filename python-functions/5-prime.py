@@ -1,5 +1,5 @@
 def is_prime(number):
-     if number <= 1:
+    if number <= 1:
         return False
     elif number == 2:
         return True
@@ -13,14 +13,6 @@ def is_prime(number):
             return False
 
         return True
-
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
