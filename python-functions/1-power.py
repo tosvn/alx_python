@@ -4,7 +4,7 @@ def pow(a, b):
 
 
 
-if __name__ = "__main__":
+if __name__ == "__main__":
     print(pow(2, 2))
     print(pow(98, 2))
     print(pow(98, 0))
