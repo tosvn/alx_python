@@ -1,1 +1,1 @@
-This directory is for the more data structures project
+This directory is for the more data structures project.
