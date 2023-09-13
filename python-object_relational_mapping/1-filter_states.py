@@ -1,42 +1,23 @@
+# listing out all tables in a certain database
 import MySQLdb
 import sys
 
-# Check if the script is being run directly and not imported
-if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        print("Usage: python script.py <username> <password> <database_name>")
-        sys.exit(1)
+# create a variable
+database = MySQLdb.connect(host="localhost", port=3306,
+                           user=sys.argv[1],
+                           passwd=sys.argv[2],
+                           db=sys.argv[3])
 
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database_name = sys.argv[3]
+# create a 'cursor', note it can be named anything
+# using 'BINARY' before 'name' enables python know case-sensitive is needed
+# N% is needed with BINARY for it to work
+cursor = database.cursor()
+cursor.execute(
+    "SELECT id, name FROM states WHERE BINARY name LIKE 'N%' ORDER BY id ASC")
+states = cursor.fetchall()
 
-    try:
-        # Connect to MySQL server
-        connection = MySQLdb.connect(
-            host="localhost",  # Change as needed
-            port=3306,         # Change as needed
-            user=username,
-            passwd=password,
-            db=database_name
-        )
+for state in states:
+    print(state)
 
-        # Create a cursor object
-        cursor = connection.cursor()
-
-        # Execute the SQL query to fetch states starting with 'N'
-        query = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY states.id ASC"
-        cursor.execute(query)
-
-        # Fetch and display the results
-        results = cursor.fetchall()
-        for row in results:
-            print(row)
-
-    except MySQLdb.Error as e:
-        print(f"MySQL Error: {e}")
-    finally:
-        # Close the database connection
-        if connection:
-            connection.close()
-
+cursor.close()
+database.close()
